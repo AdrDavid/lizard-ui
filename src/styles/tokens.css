@@ -1,0 +1,9 @@
+@layer theme, base, components, utilities;
+@layer components{
+  :root {
+    --lz-color-primary: #2563eb;
+    --lz-color-secondary: #64748b;
+    --lz-color-danger: #dc2626;
+    --lz-radius: 6px;
+  }
+}
