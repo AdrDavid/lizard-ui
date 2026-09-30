@@ -22,8 +22,7 @@
   "sideEffects": ["**/*.css"],
   "scripts": {
     "build": "tsdown && node scripts/build-css.mjs",
-    "test": "vitest",
-    "prepare": "npm run build"
+    "test": "vitest"
   },
   "peerDependencies": {
     "react": ">=18",

@@ -1,0 +1,224 @@
+@layer theme, base, components, utilities;
+@layer components{
+  :root {
+    --lz-color-primary: #2563eb;
+    --lz-color-secondary: #64748b;
+    --lz-color-danger: #dc2626;
+    --lz-radius: 6px;
+  }
+}
+@layer components {
+  .lz-button {
+    --lz-button-bg: var(--lz-color-primary);
+    --lz-button-bg-hover: color-mix(in srgb, var(--lz-button-bg) 85%, black);
+    --lz-button-color: #fff;
+    --lz-button-color-hover: var(--lz-button-color);
+    --lz-button-border: transparent;
+    --lz-button-border-hover: var(--lz-button-border);
+    --lz-button-height: 30px;
+    --lz-button-padding-x: 20px;
+    --lz-button-padding-y: 12px;
+    --lz-button-font-size: 15px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: var(--lz-button-height);
+    padding: var(--lz-button-padding-y) var(--lz-button-padding-x);
+    font-family: inherit;
+    font-size: var(--lz-button-font-size);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--lz-button-color);
+    background-color: var(--lz-button-bg);
+    border: 1px solid var(--lz-button-border);
+    border-radius: var(--lz-radius);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.05s;
+  }
+
+  .lz-button:hover:not(:disabled) {
+    background-color: var(--lz-button-bg-hover);
+    color: var(--lz-button-color-hover);
+    border-color: var(--lz-button-border-hover);
+  }
+
+  .lz-button:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  .lz-button:focus-visible {
+    outline: 2px solid var(--lz-color-primary);
+    outline-offset: 2px;
+  }
+
+  .lz-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* variantes */
+  .lz-button--secondary {
+    --lz-button-bg: var(--lz-color-secondary);
+  }
+
+  .lz-button--danger {
+    --lz-button-bg: var(--lz-color-danger);
+  }
+
+  .lz-button--outline {
+    --lz-button-bg: transparent;
+    --lz-button-bg-hover: color-mix(in srgb, var(--lz-color-primary) 10%, transparent);
+    --lz-button-color: var(--lz-color-primary);
+    --lz-button-border: var(--lz-color-primary);
+    box-shadow: none;
+  }
+
+  .lz-button--ghost {
+    --lz-button-bg: transparent;
+    --lz-button-bg-hover: color-mix(in srgb, var(--lz-color-primary) 10%, transparent);
+    --lz-button-color: var(--lz-color-primary);
+    box-shadow: none;
+  }
+
+  /* tamanhos (md é o padrão do ) */
+  .lz-button--sm {
+    --lz-button-height: 34px;
+    --lz-button-padding-x: 14px;
+    --lz-button-font-size: 13px;
+  }
+
+  .lz-button--lg {
+    --lz-button-height: 50px;
+    --lz-button-padding-x: 28px;
+    --lz-button-font-size: 16px;
+  }
+
+  .lz-button--full {
+    width: 100%;
+  }
+
+  /* loading */
+  .lz-button__spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: lz-spin 0.6s linear infinite;
+  }
+}
+
+@keyframes lz-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@layer components {
+  /* wrapper (label + input) */
+  .lz-field {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .lz-field--full {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 100%;
+  }
+
+  .lz-field__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--lz-field-label-color, #374151);
+  }
+
+  /* input */
+  .lz-input {
+    --lz-input-bg: #fff;
+    --lz-input-color: #111827;
+    --lz-input-placeholder: #9ca3af;
+    --lz-input-border: #d1d5db;
+    --lz-input-border-hover: #9ca3af;
+    --lz-input-border-focus: var(--lz-color-primary);
+    --lz-input-height: 42px;
+    --lz-input-padding-x: 12px;
+    --lz-input-font-size: 15px;
+
+    box-sizing: border-box;
+    height: var(--lz-input-height);
+    padding: 0 var(--lz-input-padding-x);
+    font-family: inherit;
+    font-size: var(--lz-input-font-size);
+    color: var(--lz-input-color);
+    background-color: var(--lz-input-bg);
+    border: 1px solid var(--lz-input-border);
+    border-radius: var(--lz-radius);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+  }
+
+  .lz-input::placeholder {
+    color: var(--lz-input-placeholder);
+  }
+
+  .lz-input:hover:not(:disabled):not(:focus) {
+    border-color: var(--lz-input-border-hover);
+  }
+
+  .lz-input:focus {
+    border-color: var(--lz-input-border-focus);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--lz-input-border-focus) 20%, transparent);
+  }
+
+  .lz-input:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+  }
+
+  /* variantes */
+  .lz-input--secondary {
+    --lz-input-border-focus: var(--lz-color-secondary);
+  }
+
+  .lz-input--outline {
+    --lz-input-bg: transparent;
+  }
+
+  .lz-input--ghost {
+    --lz-input-bg: #f3f4f6;
+    --lz-input-border: transparent;
+    --lz-input-border-hover: transparent;
+  }
+
+  .lz-input--danger {
+    --lz-input-border: var(--lz-color-danger);
+    --lz-input-border-hover: var(--lz-color-danger);
+    --lz-input-border-focus: var(--lz-color-danger);
+  }
+
+  /* tamanhos (md é o padrão) */
+  .lz-input--sm {
+    --lz-input-height: 34px;
+    --lz-input-padding-x: 10px;
+    --lz-input-font-size: 13px;
+  }
+
+  .lz-input--lg {
+    --lz-input-height: 50px;
+    --lz-input-padding-x: 16px;
+    --lz-input-font-size: 16px;
+  }
+
+  .lz-input--full {
+    width: 100%;
+  }
+}
